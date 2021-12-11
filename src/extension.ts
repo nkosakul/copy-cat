@@ -1,25 +1,51 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { textEditor } from './utils/utils';
+import LocalStorageService from './helpers/localStorageService';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+const saveSelectionToHistory = (history: LocalStorageService): void => {
+	if (!textEditor) { return; }
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "copy-cat" is now active!');
+	const document = textEditor.document;
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('copy-cat.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello VSCode from copy cat!');
-	});
+	if (!document) { return; }
 
-	context.subscriptions.push(disposable);
+	vscode.commands.executeCommand('editor.action.clipboardCopyAction');
+
+	const selection = textEditor.selection;
+	const text = document.getText(selection);
+	history.set(text);
+};
+
+const showHistory = (history: LocalStorageService): void => {
+	const historyValue = history.get('copy-cat-history');
+
+	if (!historyValue) {
+		vscode.window.showInformationMessage('Clipboard history is empty.');
+		return;
+	}
+
+	// convert string array to real array
+	const items: string[] = JSON.parse(historyValue);
+	vscode.window
+		.showQuickPick(items, {
+			title: 'Copy Cat History',
+			placeHolder: 'Select a line to paste',
+			matchOnDescription: false,
+			matchOnDetail: true,
+			onDidSelectItem: (item: string) => {
+				vscode.env.clipboard.writeText(item);
+			}
+		});
+
+};
+
+export function activate(context: vscode.ExtensionContext): any {
+	const storageManager = new LocalStorageService(context.workspaceState);
+	const commandCopy = vscode.commands.registerCommand('copy-cat.copy', (): void => saveSelectionToHistory(storageManager));
+	const commandshowHistory = vscode.commands.registerCommand('copy-cat.showHistory', (): void => showHistory(storageManager));
+
+	context.subscriptions.push(commandCopy);
+	context.subscriptions.push(commandshowHistory);
 }
 
 // this method is called when your extension is deactivated

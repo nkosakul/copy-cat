@@ -24,14 +24,34 @@
 	},
 	"license": "MIT",
 	"activationEvents": [
-		"onStartupFinished"
+		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "copy-cat.helloWorld",
-				"title": "Hello World"
+				"command": "copy-cat.copy",
+				"title": "Copy Cat: Copy",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "copy-cat.showHistory",
+				"title": "Copy Cat: Show History",
+				"when": "editorTextFocus"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "copy-cat.copy",
+				"key": "ctrl+c",
+				"mac": "cmd+c",
+				"when": "editorTextFocus"
+			},
+			{
+				"command": "copy-cat.showHistory",
+				"key": "shift+ctrl+c",
+				"mac": "shift+cmd+c",
+				"when": "editorTextFocus"
 			}
 		]
 	},
