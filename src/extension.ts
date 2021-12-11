@@ -1,11 +1,14 @@
 import * as vscode from 'vscode';
-import { textEditor, historyLimit, persistHistory } from './utils/utils';
+import { historyLimit, persistHistory } from './utils/utils';
 import LocalStorageService from './helpers/localStorageService';
 
 const saveSelectionToHistory = (
   history: LocalStorageService,
   action: string
 ): void => {
+  const textEditor: vscode.TextEditor | undefined =
+    vscode.window.activeTextEditor;
+
   if (!textEditor) {
     return;
   }
@@ -79,7 +82,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Create a status bar item
   const myStatusBarItem: vscode.StatusBarItem =
-    vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+    vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 1);
   myStatusBarItem.name = 'Copy Cat';
   myStatusBarItem.text = '$(github-alt) Copy Cat';
   myStatusBarItem.tooltip = 'Copy Cat: Show History';
