@@ -36,7 +36,12 @@
 					"type": "number",
 					"minimum": 1,
 					"default": 15,
-					"description": "Maximum number of items that are stored in the history"
+					"description": "Maximum number of items that are stored in the history."
+				},
+				"copy-cat.persistHistory": {
+					"type": "boolean",
+					"default": true,
+					"description": "Persist history between sessions."
 				}
 			}
 		},

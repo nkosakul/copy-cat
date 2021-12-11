@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { textEditor, historyLimit } from './utils/utils';
+import { textEditor, historyLimit, persistHistory } from './utils/utils';
 import LocalStorageService from './helpers/localStorageService';
 
 const saveSelectionToHistory = (history: LocalStorageService, action: string): void => {
@@ -27,9 +27,6 @@ const showHistory = (history: LocalStorageService): void => {
 		return;
 	}
 
-	// // reverse array, so newest copied items are at top position
-	// const reversedItems = historyItems.reverse();
-
 	vscode.window
 		.showQuickPick(historyItems, {
 			title: 'Copy Cat History',
@@ -45,8 +42,14 @@ const showHistory = (history: LocalStorageService): void => {
 const clearHistory = (history: LocalStorageService): void => history.clear();
 
 // this method is called when your extension is activated
-export function activate(context: vscode.ExtensionContext): any {
+export function activate(context: vscode.ExtensionContext) {
+	// clear history if persistHistory is false
+	if (!persistHistory) { context.globalState.update('copy-cat-history', ''); }
+
+	// create storeManager
 	const storageManager = new LocalStorageService(context.globalState, historyLimit);
+
+	// register commands
 	const commandCopy = vscode.commands.registerCommand('copy-cat.copy', (): void => saveSelectionToHistory(storageManager, 'clipboardCopyAction'));
 	const commandCut = vscode.commands.registerCommand('copy-cat.cut', (): void => saveSelectionToHistory(storageManager, 'clipboardCutAction'));
 	const commandshowHistory = vscode.commands.registerCommand('copy-cat.showHistory', (): void => showHistory(storageManager));
