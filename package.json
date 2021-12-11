@@ -28,6 +28,18 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "Copy Cat",
+			"properties": {
+				"copy-cat.limit": {
+					"type": "number",
+					"minimum": 1,
+					"default": 15,
+					"description": "Maximum number of items that are stored in the history"
+				}
+			}
+		},
 		"commands": [
 			{
 				"command": "copy-cat.copy",

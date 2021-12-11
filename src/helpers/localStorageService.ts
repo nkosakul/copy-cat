@@ -3,7 +3,7 @@ export default class LocalStorageService {
   historyName: string = 'copy-cat-history';
   items: string[];
 
-  constructor(private storage: Memento) {
+  constructor(private storage: Memento, private historyLimit: number) {
     this.items = [];
   }
 
@@ -15,9 +15,12 @@ export default class LocalStorageService {
     // make sure, to add quotes so we can convert historyValue into a real array easier, later
     this.items.push(value);
 
-    // reverse array, so newest copied items are on top
-    const reversedItems = this.items.reverse();
-    this.storage.update(this.historyName, reversedItems);
+    // remove every items that are not in the historyLimit
+    if (this.items.length > this.historyLimit) {
+      this.items.splice(0, this.items.length - this.historyLimit);
+    }
+
+    this.storage.update(this.historyName, this.items);
   };
 
   public clear = (): void => {

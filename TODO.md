@@ -1,3 +1,2 @@
-* allow multiple selections copy
-* set limit for history
+* add cut support
 * set icon to bottom bar
