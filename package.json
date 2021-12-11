@@ -1,6 +1,6 @@
 {
 	"name": "copy-cat",
-	"displayName": "copy cat",
+	"displayName": "Copy Cat",
 	"description": "A clipboard history VSCode extension that stores what you copy and gives it to you when needed",
 	"version": "0.0.1",
 	"engines": {
@@ -9,6 +9,20 @@
 	"categories": [
 		"Other"
 	],
+	"keywords": [
+		"Copy Cat",
+		"Clipboard history",
+		"Copy to clipboard",
+		"Clipboard",
+		"History"
+	],
+	"repository": {
+		"url": "https://github.com/nkosakul/copy-cat"
+	},
+	"bugs": {
+		"url": "https://github.com/nkosakul/copy-cat/issues"
+	},
+	"license": "MIT",
 	"activationEvents": [
 		"onStartupFinished"
 	],
