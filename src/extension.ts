@@ -48,8 +48,6 @@ const showHistory = (history: LocalStorageService): void => {
   });
 };
 
-const clearHistory = (history: LocalStorageService): void => history.clear();
-
 // this method is called when your extension is activated
 export function activate(context: vscode.ExtensionContext) {
   // clear history if persistHistory is false
@@ -77,7 +75,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
   const commandclearHistory = vscode.commands.registerCommand(
     'copy-cat.clearHistory',
-    (): void => clearHistory(storageManager)
+    (): void => storageManager.clear()
   );
 
   // Create a status bar item
@@ -94,6 +92,14 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(commandshowHistory);
   context.subscriptions.push(commandclearHistory);
   context.subscriptions.push(myStatusBarItem);
+
+  // update historyLimit on configuration change
+  vscode.workspace.onDidChangeConfiguration(() => {
+    const historyLimit: number = vscode.workspace
+      .getConfiguration('copy-cat')
+      .get('limit', 15);
+    storageManager.setHistoryLimit(historyLimit);
+  });
 }
 
 // this method is called when your extension is deactivated
