@@ -1,1 +1,1 @@
-* set icon to bottom bar
+* bug when file has full selection

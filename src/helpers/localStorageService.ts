@@ -24,6 +24,7 @@ export default class LocalStorageService {
   };
 
   public clear = (): void => {
+    this.items = [];
     this.storage.update(this.historyName, '');
   };
 }
