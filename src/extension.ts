@@ -33,7 +33,7 @@ const showHistory = (history: LocalStorageService): void => {
 	vscode.window
 		.showQuickPick(reversedItems, {
 			title: 'Copy Cat History',
-			placeHolder: 'Select a line to paste',
+			placeHolder: 'Copy a line to the clipboard',
 			matchOnDescription: false,
 			matchOnDetail: true,
 			onDidSelectItem: (item: string) => {
