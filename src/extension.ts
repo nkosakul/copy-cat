@@ -55,10 +55,17 @@ export function activate(context: vscode.ExtensionContext) {
 	const commandshowHistory = vscode.commands.registerCommand('copy-cat.showHistory', (): void => showHistory(storageManager));
 	const commandclearHistory = vscode.commands.registerCommand('copy-cat.clearHistory', (): void => clearHistory(storageManager));
 
+	// Create a status bar item
+	const myStatusBarItem: vscode.StatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+	myStatusBarItem.text = '$(github-alt) Copy Cat';
+	myStatusBarItem.command = 'copy-cat.showHistory';
+	myStatusBarItem.show();
+
 	context.subscriptions.push(commandCopy);
 	context.subscriptions.push(commandCut);
 	context.subscriptions.push(commandshowHistory);
 	context.subscriptions.push(commandclearHistory);
+	context.subscriptions.push(myStatusBarItem);
 }
 
 // this method is called when your extension is deactivated
