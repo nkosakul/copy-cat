@@ -1,6 +1,4 @@
 import { Memento } from 'vscode';
-
-// type Buffer = string[][];
 export default class LocalStorageService {
   historyName: string = 'copy-cat-history';
   items: string[];
@@ -9,17 +7,17 @@ export default class LocalStorageService {
     this.items = [];
   }
 
-  public get = (key: string): string | undefined => {
-    return this.storage.get(key);
+  public get = (): string[] | undefined => {
+    return this.storage.get(this.historyName);
   };
 
   public set = (value: string): void => {
     // make sure, to add quotes so we can convert historyValue into a real array easier, later
-    this.items.push(`"${value}"`);
+    this.items.push(value);
 
     // reverse array, so newest copied items are on top
     const reversedItems = this.items.reverse();
-    this.storage.update(this.historyName, `[${reversedItems}]`);
+    this.storage.update(this.historyName, reversedItems);
   };
 
   public clear = (): void => {

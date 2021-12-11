@@ -9,25 +9,26 @@ const saveSelectionToHistory = (history: LocalStorageService): void => {
 
 	if (!document) { return; }
 
+	// mimic vscode's behavior
 	vscode.commands.executeCommand('editor.action.clipboardCopyAction');
 
-	const selection = textEditor.selection;
-	const text = document.getText(selection);
-	history.set(text);
+	// get selection and story in the history
+	textEditor.selections.map(selection => {
+		const text = document.getText(selection);
+		history.set(text);
+	});
 };
 
 const showHistory = (history: LocalStorageService): void => {
-	const historyValue = history.get('copy-cat-history');
+	const historyItems = history.get();
 
-	if (!historyValue) {
+	if (!historyItems) {
 		vscode.window.showInformationMessage('Clipboard history is empty.');
 		return;
 	}
 
-	// convert string array to real array
-	const items: string[] = JSON.parse(historyValue);
 	vscode.window
-		.showQuickPick(items, {
+		.showQuickPick(historyItems, {
 			title: 'Copy Cat History',
 			placeHolder: 'Select a line to paste',
 			matchOnDescription: false,
@@ -36,16 +37,20 @@ const showHistory = (history: LocalStorageService): void => {
 				vscode.env.clipboard.writeText(item);
 			}
 		});
-
 };
 
+const clearHistory = (history: LocalStorageService): void => history.clear();
+
+// this method is called when your extension is activated
 export function activate(context: vscode.ExtensionContext): any {
-	const storageManager = new LocalStorageService(context.workspaceState);
+	const storageManager = new LocalStorageService(context.globalState);
 	const commandCopy = vscode.commands.registerCommand('copy-cat.copy', (): void => saveSelectionToHistory(storageManager));
 	const commandshowHistory = vscode.commands.registerCommand('copy-cat.showHistory', (): void => showHistory(storageManager));
+	const commandclearHistory = vscode.commands.registerCommand('copy-cat.clearHistory', (): void => clearHistory(storageManager));
 
 	context.subscriptions.push(commandCopy);
 	context.subscriptions.push(commandshowHistory);
+	context.subscriptions.push(commandclearHistory);
 }
 
 // this method is called when your extension is deactivated

@@ -38,6 +38,11 @@
 				"command": "copy-cat.showHistory",
 				"title": "Copy Cat: Show History",
 				"when": "editorTextFocus"
+			},
+			{
+				"command": "copy-cat.clearHistory",
+				"title": "Copy Cat: Clear History",
+				"when": "editorTextFocus"
 			}
 		],
 		"keybindings": [
