@@ -12,12 +12,12 @@ export default class LocalStorageService {
   };
 
   public set = (value: string): void => {
-    // make sure, to add quotes so we can convert historyValue into a real array easier, later
-    this.items.push(value);
+    // add new item at the beginning of the array
+    this.items.unshift(value);
 
-    // remove every items that are not in the historyLimit
+    // remove last this.historyLimit items if the array is too long
     if (this.items.length > this.historyLimit) {
-      this.items.splice(0, this.items.length - this.historyLimit);
+      this.items.pop();
     }
 
     this.storage.update(this.historyName, this.items);

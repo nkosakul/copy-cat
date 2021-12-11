@@ -27,11 +27,11 @@ const showHistory = (history: LocalStorageService): void => {
 		return;
 	}
 
-	// reverse array, so newest copied items are at top position
-	const reversedItems = historyItems.reverse();
+	// // reverse array, so newest copied items are at top position
+	// const reversedItems = historyItems.reverse();
 
 	vscode.window
-		.showQuickPick(reversedItems, {
+		.showQuickPick(historyItems, {
 			title: 'Copy Cat History',
 			placeHolder: 'Copy a line to the clipboard',
 			matchOnDescription: false,
