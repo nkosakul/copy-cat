@@ -1,70 +1,56 @@
-# copy-cat README
+# Copy Cat
 
-This is the README for your extension "copy-cat". After writing up a brief description, we recommend including the following sections.
-
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+A VSCode extension that stores your clipboard to a history and hands it back to you, whenever you want it.
 
 -----------------------------------------------------------------------------------------------------------
-## Following extension guidelines
+## Features
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+Everytime you copy or cut some code to your clipboard (inside VScode), Copy Cat will store it in a history for you.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+The Extension will show you the history (when wanted) and paste it to your clipboard for you to use.
 
-## Working with Markdown
+// TODO: add screenshot
+### Show clipboard history
+Copy Cat will store max. **15** items to your history (by default).
+You can change the history limit in your settings (see the part `Extension Settings` below).
 
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+See your clipboard history:
+* by pressing `Ctrl+Shift+C` (or `Cmd+Shift+C` on mac)
+* by using the command `>Copy Cat: Show History`
+* by clicking the `Copy Cat` Icon at the bottom right of you status bar
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
 
-### For more information
+### Clear history
+You can always clear you clipboard history by using the command `>Copy Cat: Clear History`!
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+-----------------------------------------------------------------------------------------------------------
+## Extension Settings
 
-**Enjoy!**
+### History limit
+By default, Copy Cat stores **15** items.
+You can always change the maximal amount of items stored in the history, in your settings.
+
+```json
+"copy-cat.limit": 42
+```
+
+### Persist history
+By default, Copy Cat will persist history across sessions.
+You can turn it off, if you want to clear the history on every new session.
+
+```json
+"copy-cat.persistHistory": false
+```
+
+-----------------------------------------------------------------------------------------------------------
+## Known Issues
+
+Nothing, yet!
+[Let me know](https://github.com/nkosakul/copy-cat/issues) if something's not working!
+
+-----------------------------------------------------------------------------------------------------------
+## Release Notes
+
+### 0.0.1
+
+Initial release of Copy Cat!

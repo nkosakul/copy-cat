@@ -6,4 +6,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.1] - 2021-12-12
+### Added
 - Initial release
+- Create copy to clipboard history extension
