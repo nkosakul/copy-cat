@@ -1,1 +1,0 @@
-* bug when file has full selection
