@@ -18,7 +18,7 @@ See your clipboard history:
 * by using the command `>Copy Cat: Show History`
 * by clicking the `Copy Cat` Icon at the bottom right of you status bar
 
-![screenshot of Copy Cat history](src/images/screenshot.png)
+![screenshot of Copy Cat history](/images/screenshot.png)
 
 
 ### Clear history
