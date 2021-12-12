@@ -3,6 +3,7 @@
   "displayName": "Copy Cat",
   "description": "A clipboard history VSCode extension that stores what you copy and gives it to you when needed",
   "version": "0.0.1",
+  "publisher": "nkosakul",
   "engines": {
     "vscode": "^1.63.0"
   },
@@ -28,7 +29,7 @@
   },
   "license": "MIT",
   "activationEvents": [
-    "*"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "galleryBanner": {
