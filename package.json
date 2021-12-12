@@ -6,6 +6,7 @@
   "engines": {
     "vscode": "^1.63.0"
   },
+  "icon": "src/images/logo.png",
   "categories": [
     "Other"
   ],
@@ -29,6 +30,10 @@
     "*"
   ],
   "main": "./out/extension.js",
+  "galleryBanner": {
+    "color": "#22292e",
+    "theme": "dark"
+  },
   "contributes": {
     "configuration": {
       "type": "object",
@@ -50,13 +55,11 @@
     "commands": [
       {
         "command": "copy-cat.showHistory",
-        "title": "Copy Cat: Show History",
-        "when": "editorTextFocus"
+        "title": "Copy Cat: Show History"
       },
       {
         "command": "copy-cat.clearHistory",
-        "title": "Copy Cat: Clear History",
-        "when": "editorTextFocus"
+        "title": "Copy Cat: Clear History"
       }
     ],
     "keybindings": [
