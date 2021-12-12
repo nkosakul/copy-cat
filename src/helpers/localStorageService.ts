@@ -31,12 +31,12 @@ export default class LocalStorageService {
   public setHistoryLimit = (limit: number): void => {
     this.historyLimit = limit;
 
-    // FIXME: splice is buggy
+    // if the items is too long, remove last this.historyLimit from array
     if (this.items.length > this.historyLimit) {
-      this.items.splice(0, this.historyLimit + 1);
+      const itemsOverLimit = this.items.length - this.historyLimit;
+      this.items.splice(this.historyLimit, itemsOverLimit);
     }
 
-    // FIXME: keep newest items, not oldest
     this.storage.update(this.historyName, this.items);
   };
 }
