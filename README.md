@@ -9,7 +9,6 @@ Everytime you copy or cut some code to your clipboard (inside VScode), Copy Cat 
 
 The Extension will show you the history (when wanted) and paste it to your clipboard for you to use.
 
-// TODO: add screenshot
 ### Show clipboard history
 Copy Cat will store max. **15** items to your history (by default).
 You can change the history limit in your settings (see the part `Extension Settings` below).
@@ -18,6 +17,8 @@ See your clipboard history:
 * by pressing `Ctrl+Shift+C` (or `Cmd+Shift+C` on mac)
 * by using the command `>Copy Cat: Show History`
 * by clicking the `Copy Cat` Icon at the bottom right of you status bar
+
+![screenshot of Copy Cat history](src/images/screenshot.png)
 
 
 ### Clear history
