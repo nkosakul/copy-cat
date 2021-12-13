@@ -1,7 +1,7 @@
 {
   "name": "copy-cat",
   "displayName": "Copy Cat",
-  "description": "A clipboard history VSCode extension that stores what you copy and gives it to you when needed",
+  "description": "Stores a history of your copied code.",
   "version": "1.0.0",
   "publisher": "nkosakul",
   "engines": {
