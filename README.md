@@ -1,3 +1,6 @@
+[![Marketplace](https://vsmarketplacebadge.apphb.com/version-short/nkosakul.copy-cat.svg)](https://marketplace.visualstudio.com/items?itemName=nkosakul.copy-cat)
+![Installs](https://vsmarketplacebadge.apphb.com/installs/nkosakul.copy-cat.svg)
+
 # Copy Cat
 
 Stores your clipboard to a history and hands it back to you, whenever you want it.
