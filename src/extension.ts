@@ -45,19 +45,25 @@ const showHistory = (history: LocalStorageService): void => {
       matchOnDetail: true,
     })
     .then(item => {
-      const activeEditor = vscode.window.activeTextEditor;
-      if (activeEditor) {
-        activeEditor
-          .edit(textInserter => {
-            // Delete currently selected code
-            textInserter.delete(activeEditor.selection);
-          })
-          .then(() => {
-            activeEditor.edit(function (textInserter) {
-              // Insert text from list
-              item && textInserter.insert(activeEditor.selection.start, item);
+      const immediatelyPasting: boolean = vscode.workspace
+        .getConfiguration('copy-cat')
+        .get('immediatelyPasting', true);
+
+      if (immediatelyPasting) {
+        const activeEditor = vscode.window.activeTextEditor;
+        if (activeEditor) {
+          activeEditor
+            .edit(textInserter => {
+              // Delete currently selected code
+              textInserter.delete(activeEditor.selection);
+            })
+            .then(() => {
+              activeEditor.edit(textInserter => {
+                // Immediately insert code from list
+                item && textInserter.insert(activeEditor.selection.start, item);
+              });
             });
-          });
+        }
       } else {
         item && vscode.env.clipboard.writeText(item);
       }

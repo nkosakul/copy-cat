@@ -51,10 +51,19 @@
           "type": "boolean",
           "default": true,
           "description": "Persist history between sessions."
+        },
+        "copy-cat.immediatelyPasting": {
+          "type": "boolean",
+          "default": true,
+          "description": "Immediately paste code, when selecting item in QuickPick Menu"
         }
       }
     },
     "commands": [
+      {
+        "command": "copy-cat.copy",
+        "title": "Kopieren"
+      },
       {
         "command": "copy-cat.showHistory",
         "title": "Copy Cat: Show History"
@@ -82,7 +91,15 @@
         "key": "shift+ctrl+c",
         "mac": "shift+cmd+c"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "copy-cat.copy",
+          "group": "9_cutcopypaste"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run esbuild-base -- --minify",
