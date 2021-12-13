@@ -80,8 +80,7 @@
       {
         "command": "copy-cat.showHistory",
         "key": "shift+ctrl+c",
-        "mac": "shift+cmd+c",
-        "when": "editorTextFocus"
+        "mac": "shift+cmd+c"
       }
     ]
   },
