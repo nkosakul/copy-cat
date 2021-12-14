@@ -6,7 +6,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-## [0.0.1] - 2021-12-12
+## [1.0.0] - 2021-12-12
 ### Added
 - Initial release
 - Create copy to clipboard history extension
+
+## [1.1.0] - 2021-12-14
+### Added
+* remove when clause from showHistory command
+* immediatly paste selected code from history and make it configurable
+* adding badges
+
+### Changed
+* adjust extension descirption
+* update command copy title
