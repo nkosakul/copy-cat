@@ -58,3 +58,10 @@ Nothing, yet!
 ### 1.0.0
 
 Initial release of Copy Cat!
+
+### 1.1.0
+* adjust extension descirption
+* remove when clause from showHistory command
+* immediatly paste selected code from history and make it configurable
+* adding badges
+* update command copy title
