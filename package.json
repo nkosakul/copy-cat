@@ -1,7 +1,7 @@
 {
   "name": "copy-cat",
   "displayName": "Copy Cat",
-  "description": "A clipboard history VSCode extension that stores what you copy and gives it to you when needed",
+  "description": "Stores a history of your copied code.",
   "version": "1.0.0",
   "publisher": "nkosakul",
   "engines": {
@@ -51,10 +51,19 @@
           "type": "boolean",
           "default": true,
           "description": "Persist history between sessions."
+        },
+        "copy-cat.immediatelyPasting": {
+          "type": "boolean",
+          "default": true,
+          "description": "Immediately paste code, when selecting item in QuickPick Menu"
         }
       }
     },
     "commands": [
+      {
+        "command": "copy-cat.copy",
+        "title": "Copy Cat: Copy And Save To History"
+      },
       {
         "command": "copy-cat.showHistory",
         "title": "Copy Cat: Show History"
@@ -80,10 +89,17 @@
       {
         "command": "copy-cat.showHistory",
         "key": "shift+ctrl+c",
-        "mac": "shift+cmd+c",
-        "when": "editorTextFocus"
+        "mac": "shift+cmd+c"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "copy-cat.copy",
+          "group": "9_cutcopypaste"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run esbuild-base -- --minify",

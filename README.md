@@ -1,6 +1,9 @@
+[![Marketplace](https://vsmarketplacebadge.apphb.com/version-short/nkosakul.copy-cat.svg)](https://marketplace.visualstudio.com/items?itemName=nkosakul.copy-cat)
+![Installs](https://vsmarketplacebadge.apphb.com/installs/nkosakul.copy-cat.svg)
+
 # Copy Cat
 
-A VSCode extension that stores your clipboard to a history and hands it back to you, whenever you want it.
+Stores your clipboard to a history and hands it back to you, whenever you want it.
 
 -----------------------------------------------------------------------------------------------------------
 ## Features
