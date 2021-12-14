@@ -62,7 +62,7 @@
     "commands": [
       {
         "command": "copy-cat.copy",
-        "title": "Kopieren"
+        "title": "Copy Cat: Copy And Save To History"
       },
       {
         "command": "copy-cat.showHistory",
