@@ -37,15 +37,37 @@ const showHistory = (history: LocalStorageService): void => {
     return;
   }
 
-  vscode.window.showQuickPick(historyItems, {
-    title: 'Copy Cat History',
-    placeHolder: 'Copy a line to the clipboard',
-    matchOnDescription: false,
-    matchOnDetail: true,
-    onDidSelectItem: (item: string) => {
-      vscode.env.clipboard.writeText(item);
-    },
-  });
+  vscode.window
+    .showQuickPick(historyItems, {
+      title: 'Copy Cat History',
+      placeHolder: 'Copy a line to the clipboard',
+      matchOnDescription: false,
+      matchOnDetail: true,
+    })
+    .then(item => {
+      const immediatelyPasting: boolean = vscode.workspace
+        .getConfiguration('copy-cat')
+        .get('immediatelyPasting', true);
+
+      if (immediatelyPasting) {
+        const activeEditor = vscode.window.activeTextEditor;
+        if (activeEditor) {
+          activeEditor
+            .edit(textInserter => {
+              // Delete currently selected code
+              textInserter.delete(activeEditor.selection);
+            })
+            .then(() => {
+              activeEditor.edit(textInserter => {
+                // Immediately insert code from list
+                item && textInserter.insert(activeEditor.selection.start, item);
+              });
+            });
+        }
+      } else {
+        item && vscode.env.clipboard.writeText(item);
+      }
+    });
 };
 
 // this method is called when your extension is activated
